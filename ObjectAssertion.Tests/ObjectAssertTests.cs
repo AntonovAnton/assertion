@@ -9,28 +9,68 @@ namespace ObjectAssertion.Tests
         [MemberData(nameof(EqualObjects))]
         public void ObjectAssert_AreEqual_True(object expected, object actual)
         {
-            Assert.True(ObjectAssert.AreEqual(expected, actual));
+            var condition = ObjectAssert.AreEqual(expected, actual);
+            Assert.True(condition);
         }
 
         [Theory]
         [MemberData(nameof(NotEqualObjects))]
         public void ObjectAssert_AreEqual_False(object expected, object actual)
         {
-            Assert.False(ObjectAssert.AreEqual(expected, actual));
+            var condition = ObjectAssert.AreEqual(expected, actual);
+            Assert.False(condition);
         }
 
         [Theory]
         [MemberData(nameof(NotEqualObjects))]
         public void ObjectAssert_AreNotEqual_True(object expected, object actual)
         {
-            Assert.True(ObjectAssert.AreNotEqual(expected, actual));
+            var condition = ObjectAssert.AreNotEqual(expected, actual);
+            Assert.True(condition);
         }
 
         [Theory]
         [MemberData(nameof(EqualObjects))]
         public void ObjectAssert_AreNotEqual_False(object expected, object actual)
         {
-            Assert.False(ObjectAssert.AreNotEqual(expected, actual));
+            var condition = ObjectAssert.AreNotEqual(expected, actual);
+            Assert.False(condition);
+        }
+
+        [Theory]
+        [MemberData(nameof(EqualObjects))]
+        public void ObjectAssert_That_AreEqual_True(object expected, object actual)
+        {
+            var condition = ObjectAssert.That()
+                .AreEqual(expected, actual);
+            Assert.True(condition);
+        }
+
+        [Theory]
+        [MemberData(nameof(NotEqualObjects))]
+        public void ObjectAssert_That_AreEqual_False(object expected, object actual)
+        {
+            var condition = ObjectAssert.That()
+                .AreEqual(expected, actual);
+            Assert.False(condition);
+        }
+
+        [Theory]
+        [MemberData(nameof(NotEqualObjects))]
+        public void ObjectAssert_That_AreNotEqual_True(object expected, object actual)
+        {
+            var condition = ObjectAssert.That()
+                .AreNotEqual(expected, actual);
+            Assert.True(condition);
+        }
+
+        [Theory]
+        [MemberData(nameof(EqualObjects))]
+        public void ObjectAssert_That_AreNotEqual_False(object expected, object actual)
+        {
+            var condition = ObjectAssert.That()
+                .AreNotEqual(expected, actual);
+            Assert.False(condition);
         }
 
         public static IEnumerable<object[]> EqualObjects
