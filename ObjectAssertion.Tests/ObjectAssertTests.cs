@@ -79,6 +79,10 @@ namespace ObjectAssertion.Tests
             {
                 yield return new object[] { null, null };
                 yield return new[] { new object(), new object() };
+                yield return new object[] { 0, -0 };
+                yield return new object[] { double.NaN, double.NaN };
+                yield return new object[] { double.NegativeInfinity, double.NegativeInfinity };
+                yield return new object[] { double.PositiveInfinity, double.PositiveInfinity };
                 yield return new object[] { 123, 123 };
                 yield return new object[] { "test string", "test string" };
                 yield return new object[] { new object[] { 123, "test string" }, new object[] { 123, "test string" } };
@@ -95,6 +99,8 @@ namespace ObjectAssertion.Tests
             {
                 yield return new[] { null, new object() };
                 yield return new[] { new object(), null };
+                yield return new object[] { int.MinValue, double.MinValue };
+                yield return new object[] { double.NegativeInfinity, double.PositiveInfinity };
                 yield return new object[] { 123, -123 };
                 yield return new object[] { "test string", " " };
                 yield return new object[] { new object[] { 123, "test string" }, new object[] { "test string", 123 } };
