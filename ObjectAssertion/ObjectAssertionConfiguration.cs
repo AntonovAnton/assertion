@@ -10,7 +10,7 @@ namespace ObjectAssertion
         private readonly Dictionary<Type, List<PropertyInfo>> _exceptedProperties =
             new Dictionary<Type, List<PropertyInfo>>();
 
-        public bool? FailIf { get; set; } = false;
+        public bool? FailIf { get; set; }
         public string Message { get; set; }
         public bool WithDetails { get; set; }
 

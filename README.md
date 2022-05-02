@@ -1,3 +1,3 @@
-# Assertion that objects are equals
+# Assertion that objects are equal in value
 
-That ObjectAssert class I use in tests of all of my projects for comparing objects
+I use this ObjectAssert class in tests of all of my projects for comparing objects
