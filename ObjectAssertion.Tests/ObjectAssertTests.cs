@@ -88,7 +88,8 @@ namespace ObjectAssertion.Tests
                 yield return new object[] { new object[] { 123, "test string" }, new object[] { 123, "test string" } };
                 yield return new object[]
                 {
-                    new { number = 123, testString = "test string" }, new { number = 123, testString = "test string" }
+                    new { number = 123, testString = "test string" },
+                    new { number = 123, testString = "test string" }
                 };
             }
         }
@@ -106,7 +107,8 @@ namespace ObjectAssertion.Tests
                 yield return new object[] { new object[] { 123, "test string" }, new object[] { "test string", 123 } };
                 yield return new object[]
                 {
-                    new { number = 123, testString = "test string" }, new { testString = "test string", number = 123 }
+                    new { number = 123, testString = "test string" },
+                    new { testString = "test string", number = 123 }
                 };
             }
         }

@@ -25,8 +25,9 @@ namespace ObjectAssertion
             var type = typeof(T);
             if (type != property.DeclaringType)
             {
-                throw new ArgumentException(
-                    $"Expression isn't correct because of property {property.Name} there isn't in {type.Name}");
+                var message =
+                    $"Expression isn't correct because of property {property.Name} there isn't in {type.Name}";
+                throw new ArgumentException(message);
             }
 
             if (_exceptedProperties.TryGetValue(type, out var properties))
@@ -55,8 +56,9 @@ namespace ObjectAssertion
             var property = GetProperty(getPropertyExpression);
             if (type != property.DeclaringType)
             {
-                throw new ArgumentException(
-                    $"Expression isn't correct because of property {property.Name} there isn't in {type.Name}");
+                var message =
+                    $"Expression isn't correct because of property {property.Name} there isn't in {type.Name}";
+                throw new ArgumentException(message);
             }
 
             properties.Remove(property);
@@ -108,7 +110,8 @@ namespace ObjectAssertion
                     member = null;
                     break;
                 default:
-                    throw new ArgumentException("The expression is not a member access or method call expression");
+                    const string message = "The expression is not a member access or method call expression";
+                    throw new ArgumentException(message);
             }
 
             return member;

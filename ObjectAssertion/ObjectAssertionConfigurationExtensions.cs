@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using System.Text;
 
 namespace ObjectAssertion
 {
@@ -17,6 +18,12 @@ namespace ObjectAssertion
         public static ObjectAssertionConfiguration With(this ObjectAssertionConfiguration configuration, string message,
             bool withDetails = true)
         {
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                throw new ArgumentException(
+                    $"{nameof(message)} cannot be null, empty, or consists only of white-spaces", message);
+            }
+
             if (!configuration.FailIf.HasValue)
             {
                 throw new InvalidOperationException("You should set a fail condition at first");
@@ -57,17 +64,31 @@ namespace ObjectAssertion
         }
 
         private static ObjectAssertionException CreateException(ObjectAssertionConfiguration configuration,
-            object expected, object actual, string message, bool result)
+            object expected, object actual, string details, bool result)
         {
-            var details = message;
-            message = configuration.Message ??
-                      $"Values {(result ? "are" : "aren't")} equal: {expected ?? "<null>"} - {actual ?? "<null>"}";
-            if (configuration.WithDetails && !string.IsNullOrEmpty(details))
+            var sb = new StringBuilder();
+            if (configuration.Message != null)
             {
-                message = $"{message} {Environment.NewLine}details: {details}";
+                sb.Append(configuration.Message);
+            }
+            else
+            {
+                sb.Append("Values ");
+                sb.Append(result ? "are" : "aren't");
+                sb.Append(" equal: ");
+                sb.Append(expected ?? "<null>");
+                sb.Append(" - ");
+                sb.Append(actual ?? "<null>");
             }
 
-            return new ObjectAssertionException(message);
+            if (configuration.WithDetails && !string.IsNullOrWhiteSpace(details))
+            {
+                sb.Append(" ");
+                sb.AppendLine("details: ");
+                sb.Append(details);
+            }
+
+            return new ObjectAssertionException(sb.ToString());
         }
     }
 }
