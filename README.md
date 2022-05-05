@@ -6,4 +6,4 @@ I use this ObjectAssert class in tests of all of my projects for comparing objec
 
 Copyright © 2022 Anton Antonov
 
-Licensed under the [MIT License](https://github.com/tpeczek/Demo.AspNetCore.PushNotifications/blob/master/LICENSE.md)
+Licensed under the [MIT License](https://github.com/AntonovAnton/object.assertion/blob/main/LICENSE.md)
